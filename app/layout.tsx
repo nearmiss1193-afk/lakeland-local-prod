@@ -4,12 +4,30 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { VapiWidget } from "@/components/VapiWidget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "LakelandFinds - Find the Best Local Businesses in Lakeland, FL",
   description: "Discover, compare, and connect with 3,300+ local businesses in Lakeland, FL. Rated by real customers.",
+  openGraph: {
+    title: "LakelandFinds - Lakeland's Local Business Directory",
+    description: "Discover, compare, and connect with 3,300+ local businesses in Lakeland, FL.",
+    url: "https://lakeland-local-prod.vercel.app",
+    siteName: "LakelandFinds",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LakelandFinds - Lakeland's Local Business Directory",
+    description: "Discover, compare, and connect with 3,300+ local businesses in Lakeland, FL.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +43,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <VapiWidget />
       </body>
     </html>
   );
