@@ -39,3 +39,4 @@ ts-debug.log*
 next-env.d.ts
 
 .vercel
+.env*.local
