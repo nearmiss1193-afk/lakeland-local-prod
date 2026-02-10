@@ -1,55 +1,75 @@
-import { MapPin, Phone, Home } from 'lucide-react';
 import Link from 'next/link';
+import { Building2 } from 'lucide-react';
+
+const categories = [
+    'HVAC', 'Plumbing', 'Roofing', 'Electrical',
+    'Landscaping', 'Pest Control', 'Auto Repair', 'Hair Salon',
+    'Restaurant', 'Dentist', 'Gym', 'Locksmith',
+];
 
 export function Footer() {
     return (
-        <>
-            {/* Desktop Footer */}
-            <footer className="hidden md:block bg-white border-t border-slate-200 py-12 px-4 md:px-6 mt-auto">
-                <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8">
-                    <div className="col-span-1">
-                        <h3 className="font-bold text-lg mb-4 text-brand-900">LakelandLocal</h3>
-                        <p className="text-sm text-slate-500">
-                            Connecting you with the best local businesses in Lakeland, FL.
+        <footer className="mt-20 bg-slate-900 text-slate-400">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                    {/* Brand */}
+                    <div className="md:col-span-1">
+                        <Link href="/" className="font-extrabold text-xl text-white flex items-center gap-1.5 mb-3">
+                            <span className="text-brand-400">Lakeland</span>Finds
+                        </Link>
+                        <p className="text-sm leading-relaxed">
+                            Lakeland&apos;s directory for local businesses. Discover, compare, and connect with the best services in town.
                         </p>
                     </div>
-                    <div>
-                        <h4 className="font-semibold mb-3">Discover</h4>
-                        <ul className="space-y-2 text-sm text-slate-600">
-                            <li><Link href="/categories">Categories</Link></li>
-                            <li><Link href="/trending">Trending</Link></li>
-                            <li><Link href="/new">New Arrivals</Link></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold mb-3">Community</h4>
-                        <ul className="space-y-2 text-sm text-slate-600">
-                            <li><Link href="/add-business">Add a Business</Link></li>
-                            <li><Link href="/claim">Claim Listing</Link></li>
-                        </ul>
-                    </div>
-                    {/* Legal/Links etc */}
-                </div>
-                <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-slate-100 text-center text-xs text-slate-400">
-                    &copy; {new Date().getFullYear()} Lakeland Local. All rights reserved.
-                </div>
-            </footer>
 
-            {/* Mobile Sticky Footer - "Thumb Zone" Optimization */}
-            <div className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-200 flex justify-around items-center z-50 pb-safe">
-                <Link href="/" className="flex flex-col items-center gap-1 text-brand-600 p-2">
-                    <Home className="w-5 h-5" />
-                    <span className="text-[10px] font-medium">Home</span>
-                </Link>
-                <Link href="/map" className="flex flex-col items-center gap-1 text-slate-400 hover:text-brand-600 p-2">
-                    <MapPin className="w-5 h-5" />
-                    <span className="text-[10px] font-medium">Map</span>
-                </Link>
-                <Link href="/contact" className="flex flex-col items-center gap-1 text-slate-400 hover:text-brand-600 p-2">
-                    <Phone className="w-5 h-5" />
-                    <span className="text-[10px] font-medium">Contact</span>
-                </Link>
+                    {/* Categories */}
+                    <div>
+                        <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Popular Categories</h4>
+                        <ul className="space-y-2">
+                            {categories.map((cat) => (
+                                <li key={cat}>
+                                    <Link href={`/search?category=${encodeURIComponent(cat)}`} className="text-sm hover:text-brand-400 transition-colors">
+                                        {cat}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div>
+                        <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Explore</h4>
+                        <ul className="space-y-2">
+                            <li><Link href="/search" className="text-sm hover:text-brand-400 transition-colors">Search</Link></li>
+                            <li><Link href="/categories" className="text-sm hover:text-brand-400 transition-colors">All Categories</Link></li>
+                            <li><Link href="/claim" className="text-sm hover:text-brand-400 transition-colors">Claim Your Business</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* For Business Owners */}
+                    <div>
+                        <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">For Business Owners</h4>
+                        <p className="text-sm mb-4">Claim your free listing and reach thousands of Lakeland locals.</p>
+                        <Link
+                            href="/claim"
+                            className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
+                        >
+                            <Building2 className="w-4 h-4" />
+                            Get Started Free
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                    <p>&copy; {new Date().getFullYear()} LakelandFinds.com. All rights reserved.</p>
+                    <p className="flex items-center gap-1">
+                        Powered by{' '}
+                        <a href="https://aiserviceco.com" className="text-brand-400 font-semibold hover:text-brand-300 transition-colors" target="_blank" rel="noopener noreferrer">
+                            AI Service Co
+                        </a>
+                    </p>
+                </div>
             </div>
-        </>
+        </footer>
     );
 }

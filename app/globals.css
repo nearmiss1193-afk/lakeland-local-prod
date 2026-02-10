@@ -4,21 +4,147 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 30 20% 99%;
     --foreground: 222.2 84% 4.9%;
   }
 
   body {
-    @apply bg-slate-50 text-slate-900;
+    @apply bg-[#faf9f6] text-slate-900;
+  }
+}
+
+@layer components {
+
+  /* Star rating row */
+  .star-rating {
+    @apply flex items-center gap-0.5;
+  }
+
+  .star-filled {
+    @apply text-amber-400 fill-amber-400;
+  }
+
+  .star-empty {
+    @apply text-slate-200 fill-slate-200;
+  }
+
+  .star-half {
+    @apply text-amber-400;
+  }
+
+  /* Category Pill */
+  .category-pill {
+    @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-700 hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition-all cursor-pointer shadow-sm hover:shadow-md;
+  }
+
+  .category-pill.active {
+    @apply bg-brand-500 text-white border-brand-500;
+  }
+
+  /* Yelp-style business list item */
+  .biz-list-item {
+    @apply flex gap-4 p-5 bg-white rounded-xl border border-slate-100 hover:shadow-lg hover:border-brand-200 transition-all duration-200;
+  }
+
+  /* Autocomplete dropdown */
+  .autocomplete-dropdown {
+    @apply absolute top-full left-0 right-0 bg-white border border-slate-200 rounded-xl shadow-2xl mt-1 z-50 max-h-80 overflow-y-auto;
+  }
+
+  .autocomplete-item {
+    @apply flex items-center gap-3 px-4 py-3 hover:bg-brand-50 cursor-pointer transition-colors text-sm;
+  }
+
+  .autocomplete-item.active {
+    @apply bg-brand-50;
   }
 }
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+    @apply bg-white/90 backdrop-blur-xl border border-slate-200 shadow-sm;
   }
-  
-  .glass-button {
-    @apply bg-brand-500/90 hover:bg-brand-600 backdrop-blur-md text-white shadow-lg transition-all active:scale-95;
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700;
+  }
+
+  /* Smooth card hover */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Hero image carousel */
+  @keyframes heroSlide {
+
+    0%,
+    25% {
+      opacity: 1;
+    }
+
+    30%,
+    95% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .hero-slide {
+    animation: heroSlide 20s infinite;
+  }
+
+  .hero-slide:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .hero-slide:nth-child(2) {
+    animation-delay: 5s;
+  }
+
+  .hero-slide:nth-child(3) {
+    animation-delay: 10s;
+  }
+
+  .hero-slide:nth-child(4) {
+    animation-delay: 15s;
+  }
+
+  /* Pulse dot */
+  @keyframes pulseDot {
+
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    50% {
+      transform: scale(1.5);
+      opacity: 0.5;
+    }
+  }
+
+  .animate-pulse-dot {
+    animation: pulseDot 2s ease-in-out infinite;
   }
 }

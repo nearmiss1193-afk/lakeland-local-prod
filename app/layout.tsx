@@ -8,8 +8,8 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "LakelandLocal - The Best of Lakeland",
-  description: "Discover the best local businesses in Lakeland, FL.",
+  title: "LakelandFinds - Find the Best Local Businesses in Lakeland, FL",
+  description: "Discover, compare, and connect with 3,300+ local businesses in Lakeland, FL. Rated by real customers.",
 };
 
 export default function RootLayout({
