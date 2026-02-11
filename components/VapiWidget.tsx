@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Headphones, PhoneOff } from 'lucide-react';
 
 const VAPI_PUBLIC_KEY = '3b065ff0-a721-4b66-8255-30b6b8d6daab';
-const VAPI_ASSISTANT_ID = '1a797f12-e2dd-4f7f-b2c5-08c38c74859a';
+const VAPI_ASSISTANT_ID = 'd19cae13-d11b-499b-a9e7-2e113efe1112';
 
 export function VapiWidget() {
     const [isActive, setIsActive] = useState(false);
