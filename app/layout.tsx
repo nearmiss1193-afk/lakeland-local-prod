@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LakelandFinds - Lakeland's Local Business Directory",
     description: "Discover, compare, and connect with 3,300+ local businesses in Lakeland, FL.",
-    url: "https://lakeland-local-prod.vercel.app",
+    url: "https://lakelandfinds.com",
     siteName: "LakelandFinds",
     type: "website",
     locale: "en_US",

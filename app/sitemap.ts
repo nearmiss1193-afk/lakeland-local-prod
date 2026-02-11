@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { neon } from '@neondatabase/serverless';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://lakeland-local-prod.vercel.app';
+    const baseUrl = 'https://lakelandfinds.com';
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [
