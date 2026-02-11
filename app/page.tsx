@@ -1,5 +1,6 @@
 import { getBusinesses, getCategories, getBusinessCount } from '@/lib/actions/business';
 import { SearchAutocomplete } from '@/components/search/SearchAutocomplete';
+import { VapiWidget } from '@/components/VapiWidget';
 import { DistanceBadge } from '@/components/business/DistanceBadge';
 import { Star, MapPin, Building2, Utensils, Wrench, Car, Scissors, Heart, Dumbbell, ShoppingBag, Home as HomeIcon, Zap, Bug, Dog, TreePine, Droplets, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -120,6 +121,8 @@ export default async function Home() {
           <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8">
             {formatBusinessCount(totalBusinesses)} businesses in Lakeland, FL — rated by real customers
           </p>
+
+          <VapiWidget />
 
           <SearchAutocomplete />
 
