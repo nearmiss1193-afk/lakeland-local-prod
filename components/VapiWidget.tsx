@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Mic, MicOff } from 'lucide-react';
+import { Headphones, PhoneOff } from 'lucide-react';
 
 const VAPI_PUBLIC_KEY = '3b065ff0-a721-4b66-8255-30b6b8d6daab';
 const VAPI_ASSISTANT_ID = '1a797f12-e2dd-4f7f-b2c5-08c38c74859a';
@@ -10,7 +10,6 @@ export function VapiWidget() {
     const [isActive, setIsActive] = useState(false);
     const [isConnecting, setIsConnecting] = useState(false);
     const [transcript, setTranscript] = useState('');
-    const [showTooltip, setShowTooltip] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const vapiRef = useRef<any>(null);
 
@@ -74,53 +73,58 @@ export function VapiWidget() {
     }, []);
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-3">
             {/* Transcript bubble */}
             {transcript && (
-                <div className="max-w-[280px] bg-white rounded-2xl shadow-xl border border-gray-100 px-4 py-3 text-sm text-gray-700 animate-fade-in">
+                <div className="max-w-[320px] bg-white rounded-2xl shadow-xl border border-gray-100 px-4 py-3 text-sm text-gray-700 animate-fade-in">
                     <p className="leading-relaxed">{transcript}</p>
                 </div>
             )}
 
-            {/* Tooltip */}
-            {showTooltip && !isActive && !isConnecting && (
-                <div className="bg-slate-800 text-white text-xs font-medium px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
-                    Talk to Sarah AI
-                </div>
-            )}
-
-            {/* Main button */}
+            {/* Main button — centered pill with label */}
             <button
                 onClick={toggleCall}
-                onMouseEnter={() => setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
                 disabled={isConnecting}
                 className={`
-          group relative w-14 h-14 rounded-full shadow-lg
-          flex items-center justify-center
-          transition-all duration-300 ease-out
-          hover:scale-110 hover:shadow-xl
-          active:scale-95
-          ${isActive
+                    group relative flex items-center gap-2.5 px-6 py-3.5 rounded-full shadow-lg
+                    transition-all duration-300 ease-out
+                    hover:scale-105 hover:shadow-xl
+                    active:scale-95
+                    ${isActive
                         ? 'bg-red-500 hover:bg-red-600 text-white'
                         : isConnecting
                             ? 'bg-amber-500 text-white animate-pulse cursor-wait'
-                            : 'bg-gradient-to-br from-brand-500 to-brand-600 text-white hover:from-brand-600 hover:to-brand-700'
+                            : 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700'
                     }
-        `}
-                aria-label={isActive ? 'End call with Sarah' : 'Talk to Sarah AI'}
+                `}
+                aria-label={isActive ? 'End call with Sarah' : 'Ask Sarah — AI Voice Assistant'}
             >
                 {isActive ? (
-                    <MicOff className="w-6 h-6" />
+                    <>
+                        <PhoneOff className="w-5 h-5" />
+                        <span className="text-sm font-semibold">End Call</span>
+                    </>
                 ) : isConnecting ? (
-                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <span className="text-sm font-semibold">Connecting...</span>
+                    </>
                 ) : (
-                    <Mic className="w-6 h-6" />
+                    <>
+                        <Headphones className="w-5 h-5" />
+                        <span className="text-sm font-semibold">Ask Sarah AI</span>
+                        <span className="text-xs opacity-75 hidden sm:inline">— Voice Assistant</span>
+                    </>
                 )}
 
                 {/* Pulse ring when active */}
                 {isActive && (
-                    <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-30" />
+                    <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-20" />
+                )}
+
+                {/* Subtle glow effect when idle */}
+                {!isActive && !isConnecting && (
+                    <span className="absolute inset-0 rounded-full bg-emerald-400 animate-pulse opacity-10" />
                 )}
             </button>
         </div>
