@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
@@ -37,6 +38,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XZK2Z9K3TW"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XZK2Z9K3TW');
+          `}
+        </Script>
+      </head>
       <body className={cn(inter.variable, "font-sans min-h-screen antialiased flex flex-col")}>
         <Header />
         <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-6">
